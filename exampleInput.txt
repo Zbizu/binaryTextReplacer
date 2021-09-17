@@ -1,0 +1,4 @@
+this is an example file. Here is first occurence of aaa.
+here is two aaa in aaa single line
+here is a value bbb=144 and another bbb=115
+bbb=999dd

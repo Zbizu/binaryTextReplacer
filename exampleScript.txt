@@ -1,0 +1,10 @@
+-- line comment
+fileName: "exampleInput.txt" -- which file to open
+-- this will replace aaa to bbb
+replace: "aaa"
+to: "b"
+-- this will replace bbb=aaa to bbb=cc
+-- and fill the remaining space with spaces
+replaceChars: "3"
+at: "bbb="
+to: "cc" -- if longer than replaceChars, it wont work
