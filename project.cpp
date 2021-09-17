@@ -243,6 +243,23 @@ int main(int argc, char *argv[]) {
                 } else if (command.first == "replace") {
                     option = REPLACE_NORMAL;
                     replaceKey = command.second;
+
+                    stringstream newKey;
+                    if (replaceKey.find("%%%%") == 0) {
+                        size_t headPos = 4;
+                        size_t endPos = replaceKey.size();
+
+                        while (headPos < endPos) {
+                            stringstream converter;
+                            unsigned int converted;
+                            converter << std::hex << replaceKey.substr(headPos, 2);
+                            converter >> converted;
+                            converter.str("");
+                            newKey << static_cast<char>(converted);
+                            headPos += 3;
+                        }
+                        replaceKey = newKey.str();
+                    }
                 } else if (command.first == "replaceChars") {
                     option = REPLACE_OFFSET;
                     replaceAmount = command.second;
@@ -258,6 +275,23 @@ int main(int argc, char *argv[]) {
 
                         //add to stack
                         if (option == REPLACE_NORMAL) {
+                            stringstream newKey;
+                            if (newValue.find("%%%%") == 0) {
+                                size_t headPos = 4;
+                                size_t endPos = newValue.size();
+
+                                while (headPos < endPos) {
+                                    stringstream converter;
+                                    unsigned int converted;
+                                    converter << std::hex << newValue.substr(headPos, 2);
+                                    converter >> converted;
+                                    converter.str("");
+                                    newKey << static_cast<char>(converted);
+                                    headPos += 3;
+                                }
+                                newValue = newKey.str();
+                            }
+
                             regularReplace.push_back(make_pair(replaceKey, newValue));
                         } else if (option == REPLACE_OFFSET) {
                             int amount = atoi(replaceAmount.c_str());
