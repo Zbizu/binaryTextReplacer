@@ -99,8 +99,6 @@ tokenizerState getNextState(char symbol, string buffer, tokenizerState currentSt
     return STATE_ERROR;
 }
 
-//to do: vector of instructions as a stack
-//to do: second stage that will build concrete instruction (or just interpret)
 //instructions
 vector< pair<string,string> > instructionStack;
 
@@ -110,7 +108,6 @@ void tokenize (string line) {
     tokenizerState state = STATE_NEWCOMMAND;
     char symbol;
 
-    //to do: stack
     //instruction
     string key;
     string value;
